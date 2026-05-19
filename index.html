@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKS — Liquidación Luis Pachón</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #090b11;
+    --bg1:       #0e1119;
+    --bg2:       #141828;
+    --bg3:       #1a1e30;
+    --border:    rgba(255,255,255,0.07);
+    --border2:   rgba(255,255,255,0.13);
+    --txt:       #edf0f7;
+    --txt2:      #b8c0d4;
+    --txt3:      #8e9ab2;
+    --green:     #1fcfa0;
+    --green-bg:  rgba(31,207,160,0.08);
+    --amber:     #f5a623;
+    --amber-bg:  rgba(245,166,35,0.08);
+    --red:       #f06b6b;
+    --red-bg:    rgba(240,107,107,0.08);
+    --blue:      #5b9cf6;
+    --blue-bg:   rgba(91,156,246,0.10);
+    --teal:      #2dd4bf;
+    --gold:      #e8b84b;
+    --radius:    8px;
+    --radius-lg: 12px;
+    --mono:      'DM Mono', monospace;
+    --sans:      'DM Sans', system-ui, sans-serif;
+  }
+
+  html { background: var(--bg); color: var(--txt); font-family: var(--sans); font-size: 14px; line-height: 1.5; }
+
+  body { min-height: 100vh; }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--bg1);
+    border-bottom: 1px solid var(--border2);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-brand { display: flex; align-items: center; gap: 14px; }
+  .header-logo {
+    width: 32px; height: 32px;
+    background: var(--blue);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: #fff; letter-spacing: -0.5px;
+  }
+  .header-title { font-size: 14px; font-weight: 500; color: var(--txt); }
+  .header-sub { font-size: 11px; color: var(--txt2); margin-top: 1px; }
+  .header-badge {
+    font-family: var(--mono); font-size: 11px;
+    background: var(--bg3); border: 1px solid var(--border2);
+    padding: 4px 10px; border-radius: 20px; color: var(--txt2);
+  }
+
+  /* ── STICKY RESULT BAR ── */
+  .result-bar {
+    background: var(--bg1);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px 18px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    position: sticky;
+    top: 56px;
+    z-index: 99;
+  }
+  .result-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(91,156,246,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .rbar-cell { padding: 0 20px; }
+  .rbar-cell:first-child { padding-left: 0; }
+  .rbar-cell + .rbar-cell { border-left: 1px solid var(--border); }
+  .rbar-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--txt3); margin-bottom: 4px; }
+  .rbar-val { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--txt); white-space: nowrap; }
+  .rbar-val.highlight { color: var(--gold); font-size: 22px; }
+  .rbar-note { font-size: 10px; color: var(--txt3); margin-top: 2px; }
+  .rbar-explain { font-size: 10px; color: var(--txt2); margin-top: 5px; line-height: 1.5; border-top: 1px solid var(--border); padding-top: 5px; }
+
+  /* ── LAYOUT ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 28px 32px 60px; }
+
+  .section-title {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--txt3); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+  }
+  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .card-sub { font-size: 11px; color: var(--txt2); }
+  .card-note { font-size: 10px; color: var(--txt3); font-style: italic; }
+
+  /* ── 3 CHAMP GRID ── */
+  .champ-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+
+  .champ-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+  .champ-header > div:first-child { min-width: 0; flex: 1; }
+  .champ-header .card-sub, .champ-header .card-note { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .retention-badge { text-align: right; font-family: var(--mono); flex-shrink: 0; }
+  .retention-label { font-size: 10px; color: var(--txt3); margin-bottom: 2px; }
+  .retention-val { font-size: 22px; font-weight: 500; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+
+  /* ── SLIDER ROW ── */
+  .s-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0; }
+  .s-label { font-size: 11px; color: var(--txt2); width: 138px; flex-shrink: 0; line-height: 1.3; }
+  .s-track { flex: 1; position: relative; min-width: 40px; }
+
+  input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 3px;
+    background: var(--bg3);
+    border-radius: 2px; outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--txt);
+    border: 2px solid var(--bg2);
+    transition: transform 0.1s;
+  }
+  input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.15); }
+  input[type=range]::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--txt); border: 2px solid var(--bg2);
+  }
+
+  .s-val { font-family: var(--mono); font-size: 12px; font-weight: 500; min-width: 38px; text-align: right; }
+  .col-green { color: var(--green); }
+  .col-amber { color: var(--amber); }
+  .col-red   { color: var(--red);   }
+  .col-blue  { color: var(--blue);  }
+  .col-gold  { color: var(--gold);  }
+  .col-muted { color: var(--txt2);  }
+
+  /* ── MINI STATS INSIDE CARD ── */
+  .mini-stats {
+    background: var(--bg3);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    margin-top: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .ms-row { display: flex; justify-content: space-between; align-items: center; min-width: 0; gap: 8px; }
+  .ms-label { font-size: 11px; color: var(--txt2); white-space: nowrap; }
+  .ms-val { font-family: var(--mono); font-size: 12px; font-weight: 500; white-space: nowrap; }
+
+  /* ── YEAR TAG ── */
+  .year-tag {
+    font-size: 10px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--amber);
+    margin-bottom: 6px; opacity: 0.8;
+  }
+
+  /* ── PROB SECTION ── */
+  .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .prob-sub-title {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--txt3); margin: 10px 0 6px; padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .prob-sub-title:first-of-type { border-top: none; padding-top: 0; margin-top: 2px; }
+
+  /* ── EARLY PAYMENT ── */
+  .early-row {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 14px 0 0;
+  }
+  .early-note { font-size: 11px; color: var(--txt2); flex: 1; min-width: 220px; line-height: 1.6; }
+  .early-slider { flex: 1; min-width: 140px; max-width: 220px; }
+  .early-pct { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--amber); min-width: 58px; text-align: center; }
+  .early-saving { font-family: var(--mono); font-size: 13px; color: var(--red); min-width: 100px; text-align: right; }
+
+  /* ── SUMMARY TABLE ── */
+  .table-wrap { overflow-x: auto; }
+  .summary-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 600px; }
+  .summary-table th {
+    text-align: right; padding: 7px 10px; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--txt3); font-weight: 500;
+    border-bottom: 1px solid var(--border2); white-space: nowrap;
+  }
+  .summary-table th:first-child { text-align: left; }
+  .summary-table td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .summary-table td:first-child { text-align: left; color: var(--txt); white-space: normal; }
+  .summary-table tr:last-child td { border-bottom: none; }
+
+  .tr-sub { background: var(--bg3); }
+  .tr-sub td { font-weight: 500; border-bottom: 1px solid var(--border2) !important; }
+  .tr-discount td { color: var(--txt2); }
+  .tr-discount td:last-child { color: var(--red); font-family: var(--mono); }
+  .tr-total { background: rgba(232,184,75,0.07); border-top: 2px solid rgba(232,184,75,0.3) !important; }
+  .tr-total td { border-bottom: none !important; }
+  .tr-total td:first-child { font-size: 14px; font-weight: 600; color: var(--gold); }
+  .tr-total .fee-val { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold); }
+
+  .mono { font-family: var(--mono); }
+  td.mono { font-size: 12px; }
+
+  /* ── FOOTNOTE ── */
+  .footnote {
+    margin-top: 20px; padding: 14px 18px;
+    background: var(--bg2); border-radius: var(--radius);
+    border-left: 3px solid var(--border2);
+    font-size: 11px; color: var(--txt3); line-height: 1.7;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .header, .result-bar { position: static; }
+    body { background: white; color: black; }
+    .card { border: 1px solid #ddd; background: #fafafa; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .main > * { animation: fadeUp 0.4s ease both; }
+  .main > *:nth-child(1) { animation-delay: 0.05s; }
+  .main > *:nth-child(2) { animation-delay: 0.10s; }
+  .main > *:nth-child(3) { animation-delay: 0.15s; }
+  .main > *:nth-child(4) { animation-delay: 0.20s; }
+  .main > *:nth-child(5) { animation-delay: 0.25s; }
+  .main > *:nth-child(6) { animation-delay: 0.30s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-logo">AKS</div>
+    <div>
+      <div class="header-title">Calculadora de Liquidación — <span style="color:var(--gold)">Luis Pachón</span></div>
+      <div class="header-sub">Al Kamel Systems · Uso interno · 2026</div>
+    </div>
+  </div>
+  <div class="header-badge">FE S12 · E1 2026 · Extreme E/H</div>
+</header>
+
+<!-- STICKY RESULT BAR -->
+<div class="result-bar">
+  <div class="rbar-cell">
+    <div class="rbar-label">Valor nominal máximo</div>
+    <div class="rbar-val" id="rb-face">—</div>
+    <div class="rbar-note">3,5 años · sin descuentos ni probabilidad</div>
+    <div class="rbar-explain">Lo que Luis cobraría si todo se cumple al 100%, sin ningún riesgo.</div>
+  </div>
+  <div class="rbar-cell">
+    <div class="rbar-label">Comisión probable</div>
+    <div class="rbar-val" id="rb-gross">—</div>
+    <div class="rbar-note">ponderado por continuidad del campeonato</div>
+    <div class="rbar-explain">Ajustado por la probabilidad de que FE, E1 y XH sigan existiendo cada año.</div>
+  </div>
+  <div class="rbar-cell">
+    <div class="rbar-label">Valor ajustado</div>
+    <div class="rbar-val" id="rb-net">—</div>
+    <div class="rbar-note">tras aplicar todos los descuentos de riesgo</div>
+    <div class="rbar-explain">Sobre la comisión probable, se descuentan cancelaciones, mal pago, reducción de servicios y penalidades.</div>
+  </div>
+  <div class="rbar-cell">
+    <div class="rbar-label">★ Fee recomendado</div>
+    <div class="rbar-val highlight" id="rb-total">—</div>
+    <div class="rbar-note" id="rb-disc">descuento total vs nominal</div>
+    <div class="rbar-explain">Al valor ajustado se le aplica el descuento por pago anticipado y se resta la deuda de E1 pendiente.</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SECTION 1: DISCOUNT RATES -->
+  <div class="section-title">Tasas de descuento por riesgo</div>
+
+  <div class="champ-grid">
+
+    <!-- FORMULA E -->
+    <div class="card" id="card-fe">
+      <div class="champ-header">
+        <div>
+          <div class="card-title">Formula E</div>
+          <div class="card-sub">17 carreras S12 · €27.380/evento</div>
+          <div class="card-note" style="margin-top:3px">12 facturables · Contrato 1+2 opciones</div>
+        </div>
+        <div class="retention-badge">
+          <div class="retention-label">retención neta</div>
+          <div class="retention-val" id="ret-fe">—</div>
+        </div>
+      </div>
+      <div style="font-size:10px;background:var(--bg3);border-radius:6px;padding:7px 10px;margin-bottom:10px;color:var(--txt2);line-height:1.6;">
+        <span style="color:var(--green);font-weight:500;">2026 restante — base €136.900</span> · 5 eventos pendientes × €27.380 · sin descuentos.<br>
+        <span style="color:var(--txt3);">Ya pagados: SAO, MEX, MIA, JED×2, MAD, BER×2, MON×2 (7 eventos · €191.660)</span><br>
+        <span style="color:var(--amber);font-weight:500;">2027–2028 — base €328.560/año</span> · Temporada completa · con descuentos.
+      </div>
+      <hr class="divider">
+      <div class="year-tag">Aplica · 2027–2028</div>
+      <div class="s-row"><span class="s-label">Cancelación eventos</span><input type="range" min="0" max="100" step="1" value="5" id="fe_cancel"><span class="s-val" id="v-fe_cancel">5%</span></div>
+      <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="3" id="fe_badpay"><span class="s-val" id="v-fe_badpay">3%</span></div>
+      <div class="s-row"><span class="s-label">Reducción de servicios</span><input type="range" min="0" max="100" step="1" value="15" id="fe_reduce"><span class="s-val" id="v-fe_reduce">15%</span></div>
+      <div class="s-row"><span class="s-label">Riesgo penalidades</span><input type="range" min="0" max="100" step="1" value="5" id="fe_penal"><span class="s-val" id="v-fe_penal">5%</span></div>
+      <div class="mini-stats">
+        <div class="ms-row"><span class="ms-label">2026 restante (5 eventos)</span><span class="ms-val col-green" id="ms-fe-26">—</span></div>
+        <div class="ms-row"><span class="ms-label">2027–28 (ajustado)</span><span class="ms-val" id="ms-fe-n">—</span></div>
+        <div class="ms-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px;"><span class="ms-label">Comisión probable total</span><span class="ms-val" id="ms-fe-g">—</span></div>
+      </div>
+    </div>
+
+    <!-- E1 SERIES -->
+    <div class="card" id="card-e1">
+      <div class="champ-header">
+        <div>
+          <div class="card-title">E1 Series</div>
+          <div class="card-sub">8 eventos 2026 · Retainer + GFX</div>
+          <div class="card-note" style="margin-top:3px">JED, Como, Dubrovnik, Monaco, Luanda, Lagos, USA×2</div>
+        </div>
+        <div class="retention-badge">
+          <div class="retention-label">retención neta</div>
+          <div class="retention-val" id="ret-e1">—</div>
+        </div>
+      </div>
+      <div style="font-size:10px;background:var(--bg3);border-radius:6px;padding:7px 10px;margin-bottom:10px;color:var(--txt2);line-height:1.5;">
+        <span style="color:var(--amber);font-weight:500;">2026</span> · Mal pago + deuda pendiente.<br>
+        <span style="color:var(--amber);font-weight:500;">2027–2029</span> · Cancelación, reducción y penalidades.
+      </div>
+      <hr class="divider">
+      <div class="year-tag">Aplica · 2026</div>
+      <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="35" id="e1_badpay"><span class="s-val" id="v-e1_badpay">35%</span></div>
+      <div class="year-tag" style="margin-top:6px;">Aplica · 2027–2029</div>
+      <div class="s-row"><span class="s-label">Cancelación eventos</span><input type="range" min="0" max="100" step="1" value="25" id="e1_cancel"><span class="s-val" id="v-e1_cancel">25%</span></div>
+      <div class="s-row"><span class="s-label">Reducción de servicios</span><input type="range" min="0" max="100" step="1" value="15" id="e1_reduce"><span class="s-val" id="v-e1_reduce">15%</span></div>
+      <div class="s-row"><span class="s-label">Riesgo penalidades</span><input type="range" min="0" max="100" step="1" value="5" id="e1_penal"><span class="s-val" id="v-e1_penal">5%</span></div>
+      <hr class="divider">
+      <div class="year-tag">Aplica · 2026</div>
+      <div style="font-size:11px;font-weight:500;color:var(--txt2);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Deuda pendiente E1</div>
+      <div class="s-row" style="align-items:flex-start;gap:8px;margin-bottom:4px;">
+        <span class="s-label" style="padding-top:2px;">Deuda en cash</span>
+        <div style="flex:1;min-width:0;">
+          <input type="range" min="50000" max="400000" step="5000" value="100000" id="e1_debt">
+        </div>
+        <span class="s-val col-amber" id="v-e1_debt" style="min-width:68px;">€100.000</span>
+      </div>
+      <div class="s-row" style="margin-bottom:0;">
+        <span class="s-label">Descuento s/ deuda</span>
+        <input type="range" min="0" max="100" step="5" value="50" id="e1_debt_disc">
+        <span class="s-val col-red" id="v-e1_debt_disc">50%</span>
+      </div>
+      <div style="font-size:10px;color:var(--txt3);margin-top:4px;margin-bottom:10px;padding-left:2px;">
+        Importe descontado del fee: <span id="e1_debt_deduct" style="color:var(--red);font-family:var(--mono);">—</span>
+      </div>
+      <div class="mini-stats">
+        <div class="ms-row"><span class="ms-label">2026 (mal pago aplicado)</span><span class="ms-val" id="ms-e1-26">—</span></div>
+        <div class="ms-row"><span class="ms-label">2027–29 (ajustado)</span><span class="ms-val" id="ms-e1-n">—</span></div>
+        <div class="ms-row"><span class="ms-label">− Deuda recuperada</span><span class="ms-val col-red" id="ms-e1-debt">—</span></div>
+        <div class="ms-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px;"><span class="ms-label">Comisión probable total</span><span class="ms-val" id="ms-e1-g">—</span></div>
+      </div>
+    </div>
+
+    <!-- EXTREME E -->
+    <div class="card" id="card-exE">
+      <div class="champ-header">
+        <div>
+          <div class="card-title">Extreme E / H</div>
+          <div class="card-sub">1 evento/año · €20.000 estimado</div>
+          <div class="card-note" style="margin-top:3px">Muy alto riesgo operacional y de cancelación</div>
+        </div>
+        <div class="retention-badge">
+          <div class="retention-label">retención neta</div>
+          <div class="retention-val" id="ret-exE">—</div>
+        </div>
+      </div>
+      <div style="font-size:10px;background:var(--bg3);border-radius:6px;padding:7px 10px;margin-bottom:10px;color:var(--txt2);line-height:1.5;">
+        <span style="color:var(--amber);font-weight:500;">2026</span> · Solo mal pago de clientes.<br>
+        <span style="color:var(--amber);font-weight:500;">2027–2029</span> · Cancelación, reducción y penalidades.
+      </div>
+      <hr class="divider">
+      <div class="year-tag">Aplica · 2026</div>
+      <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="20" id="exE_badpay"><span class="s-val" id="v-exE_badpay">20%</span></div>
+      <div class="year-tag" style="margin-top:6px;">Aplica · 2027–2029</div>
+      <div class="s-row"><span class="s-label">Cancelación eventos</span><input type="range" min="0" max="100" step="1" value="45" id="exE_cancel"><span class="s-val" id="v-exE_cancel">45%</span></div>
+      <div class="s-row"><span class="s-label">Reducción de servicios</span><input type="range" min="0" max="100" step="1" value="40" id="exE_reduce"><span class="s-val" id="v-exE_reduce">40%</span></div>
+      <div class="s-row"><span class="s-label">Riesgo penalidades</span><input type="range" min="0" max="100" step="1" value="5" id="exE_penal"><span class="s-val" id="v-exE_penal">5%</span></div>
+      <div class="mini-stats">
+        <div class="ms-row"><span class="ms-label">2026 (mal pago aplicado)</span><span class="ms-val" id="ms-exE-26">—</span></div>
+        <div class="ms-row"><span class="ms-label">2027–29 (ajustado)</span><span class="ms-val" id="ms-exE-n">—</span></div>
+        <div class="ms-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px;"><span class="ms-label">Comisión probable total</span><span class="ms-val" id="ms-exE-g">—</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: CONTRACT STRUCTURE -->
+  <div class="section-title">Estructura contractual y probabilidad de continuidad</div>
+
+  <div class="prob-grid" style="margin-bottom:28px">
+
+    <!-- FE CONTRACT -->
+    <div class="card">
+      <div class="card-title">Formula E — Temporadas cubiertas</div>
+      <div class="card-sub" style="margin-bottom:12px">1 temporada garantizada + 2 opciones extensibles</div>
+
+      <div class="prob-sub-title">Temporada 1 — Garantizada</div>
+      <div class="s-row"><span class="s-label" style="width:120px">Año 1 (contrato)</span><input type="range" min="0" max="100" step="5" value="100" id="fe_y1"><span class="s-val col-muted" id="v-fe_y1">100%</span></div>
+
+      <div class="prob-sub-title">Temporada 2 — Opción 1</div>
+      <div class="s-row"><span class="s-label" style="width:120px">Probabilidad ejercicio</span><input type="range" min="0" max="100" step="5" value="70" id="fe_y2"><span class="s-val col-muted" id="v-fe_y2">70%</span></div>
+
+      <div class="prob-sub-title">Temporada 3 — Opción 2</div>
+      <div class="s-row"><span class="s-label" style="width:120px">Probabilidad ejercicio</span><input type="range" min="0" max="100" step="5" value="45" id="fe_y3"><span class="s-val col-muted" id="v-fe_y3">45%</span></div>
+
+      <div style="font-size:10px;color:var(--txt3);margin-top:10px;line-height:1.6">
+        Las opciones sólo se ejercen si el contrato base se renueva. La opción 2 condiciona la probabilidad implícita de la opción 1.
+      </div>
+    </div>
+
+    <!-- E1 + ExE PROBABILITIES -->
+    <div class="card">
+      <div class="card-title">E1 Series y Extreme E — Viabilidad futura</div>
+      <div class="card-sub" style="margin-bottom:12px">Probabilidad de que el campeonato siga activo cada año</div>
+
+      <div class="prob-sub-title">E1 Series (riesgo de desaparición)</div>
+      <div class="s-row"><span class="s-label" style="width:120px">Año 1</span><input type="range" min="0" max="100" step="5" value="100" id="e1_y1"><span class="s-val col-muted" id="v-e1_y1">100%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">Año 2</span><input type="range" min="0" max="100" step="5" value="60" id="e1_y2"><span class="s-val col-muted" id="v-e1_y2">60%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">Año 3</span><input type="range" min="0" max="100" step="5" value="35" id="e1_y3"><span class="s-val col-muted" id="v-e1_y3">35%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">Semestre 3,5</span><input type="range" min="0" max="100" step="5" value="20" id="e1_y35"><span class="s-val col-muted" id="v-e1_y35">20%</span></div>
+
+      <div class="prob-sub-title">Extreme E / H (1 evento/año)</div>
+      <div class="s-row"><span class="s-label" style="width:120px">Evento año 1</span><input type="range" min="0" max="100" step="5" value="70" id="exE_y1"><span class="s-val col-muted" id="v-exE_y1">70%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">Evento año 2</span><input type="range" min="0" max="100" step="5" value="40" id="exE_y2"><span class="s-val col-muted" id="v-exE_y2">40%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">Evento año 3</span><input type="range" min="0" max="100" step="5" value="25" id="exE_y3"><span class="s-val col-muted" id="v-exE_y3">25%</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: EARLY PAYMENT -->
+  <div class="section-title">Descuento por pago anticipado</div>
+
+  <div class="card" style="margin-bottom:28px">
+    <div class="card-title">Descuento TVM — Pago de 3,5 años en un único desembolso</div>
+    <div class="early-row">
+      <div class="early-note">
+        Al pagar la totalidad de 3,5 años de comisiones en un solo pago inmediato,<br>
+        AKS asume el riesgo de liquidez y adelanta valor temporal. El descuento compensa ese adelanto.<br>
+        <span style="color:var(--txt3)">A un 10% de descuento total ≈ tasa TVM anual implícita del ~4,3%</span>
+      </div>
+      <input type="range" class="early-slider" min="0" max="100" step="1" value="10" id="early">
+      <div class="early-pct" id="v-early">10%</div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:var(--txt3);margin-bottom:3px">ahorro AKS</div>
+        <div class="early-saving" id="saving-early">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: SUMMARY TABLE -->
+  <div class="section-title">Resumen de negociación</div>
+
+  <div class="card">
+    <div class="table-wrap">
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">Concepto</th>
+          <th>Base anual</th>
+          <th>Comisión probable</th>
+          <th>Factor retención</th>
+          <th>Descuento riesgo</th>
+          <th>Valor ajustado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Formula E <span style="color:var(--txt3);font-size:10px">— 3 temporadas</span></td>
+          <td class="mono col-muted">€328.560</td>
+          <td class="mono" id="tg-fe">—</td>
+          <td class="mono" id="tr-fe">—</td>
+          <td class="mono col-red" id="td-fe">—</td>
+          <td class="mono" id="tn-fe">—</td>
+        </tr>
+        <tr>
+          <td>E1 Series <span style="color:var(--txt3);font-size:10px">— 3,5 años</span></td>
+          <td class="mono col-muted">€107.717</td>
+          <td class="mono" id="tg-e1">—</td>
+          <td class="mono" id="tr-e1">—</td>
+          <td class="mono col-red" id="td-e1">—</td>
+          <td class="mono" id="tn-e1">—</td>
+        </tr>
+        <tr>
+          <td>Extreme E/H <span style="color:var(--txt3);font-size:10px">— 3 eventos/año</span></td>
+          <td class="mono col-muted">€20.000</td>
+          <td class="mono" id="tg-exE">—</td>
+          <td class="mono" id="tr-exE">—</td>
+          <td class="mono col-red" id="td-exE">—</td>
+          <td class="mono" id="tn-exE">—</td>
+        </tr>
+        <tr class="tr-sub">
+          <td colspan="5">Subtotal valor ajustado</td>
+          <td class="mono" id="t-sub">—</td>
+        </tr>
+        <tr class="tr-discount">
+          <td colspan="5" id="t-disc-label">— Descuento pago anticipado (10%)</td>
+          <td class="mono col-red" id="t-disc-val">—</td>
+        </tr>
+        <tr class="tr-discount">
+          <td colspan="5" id="t-debt-label">— Deuda E1 recuperada</td>
+          <td class="mono col-red" id="t-debt-val">—</td>
+        </tr>
+        <tr class="tr-total">
+          <td colspan="5">Fee de liquidación recomendado</td>
+          <td class="fee-val" id="t-total">—</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- 2026 ANNUAL BREAKDOWN -->
+  <div class="section-title" style="margin-top:28px;">Detalle de comisiones 2026 — Luis Pachón</div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+      <div>
+        <div style="font-size:13px;font-weight:500;">Calendario completo 2026</div>
+        <div style="font-size:11px;color:var(--txt2);margin-top:2px;">Estado a 19 de mayo de 2026 · Referencia basada en contrato activo</div>
+      </div>
+      <div style="display:flex;gap:16px;font-size:11px;">
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--green);opacity:0.7;margin-right:5px;vertical-align:middle;"></span>Pagado</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--amber);opacity:0.7;margin-right:5px;vertical-align:middle;"></span>Pendiente 2026</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+    <table class="summary-table" style="font-size:11px;">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:90px;">Mes</th>
+          <th style="text-align:left;">Campeonato</th>
+          <th style="text-align:left;">Concepto</th>
+          <th style="text-align:right;">Importe</th>
+          <th style="text-align:center;width:90px;">Estado</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-2026"></tbody>
+      <tfoot>
+        <tr style="background:var(--bg3);border-top:1px solid var(--border2);">
+          <td colspan="3" style="text-align:left;padding:8px 10px;font-weight:500;color:var(--txt2);">Total pagado hasta hoy</td>
+          <td class="mono" style="text-align:right;padding:8px 10px;color:var(--green);font-weight:500;" id="foot-paid">—</td>
+          <td></td>
+        </tr>
+        <tr style="background:var(--bg3);">
+          <td colspan="3" style="text-align:left;padding:8px 10px;font-weight:500;color:var(--txt2);">Total pendiente 2026</td>
+          <td class="mono" style="text-align:right;padding:8px 10px;color:var(--amber);font-weight:500;" id="foot-pending">—</td>
+          <td></td>
+        </tr>
+        <tr style="background:rgba(232,184,75,0.05);border-top:1px solid rgba(232,184,75,0.2);">
+          <td colspan="3" style="text-align:left;padding:10px 10px;font-size:13px;font-weight:500;color:var(--gold);">Total anual 2026</td>
+          <td class="mono" style="text-align:right;padding:10px 10px;font-size:16px;font-weight:500;color:var(--gold);" id="foot-total2026">—</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+  </div>
+    <strong style="color:var(--txt2)">Metodología:</strong>
+    Los descuentos de riesgo se aplican de forma <em>multiplicativa</em> (no aditiva) para reflejar la independencia estadística de cada factor.
+    La comisión probable = base anual × Σ probabilidades por año. Extreme E no genera comisión en el semestre 3,5 (1 evento/año).
+    El factor retención neta = (1−cancel.) × (1−mal pago) × (1−reducción) × (1−penalidades).
+    El descuento por pago anticipado se aplica sobre el subtotal neto como proxy del valor temporal del dinero.
+    <br><br>
+    <span style="color:var(--txt3)">
+    Referencia base 2026 — Formula E: €328.560/año (12 eventos facturables × €27.380) ·
+    E1 Eventos: €89.733/año + GFX: €17.984/año = €107.717/año ·
+    Extreme E/H: €20.000/año estimado
+    </span>
+  </div>
+
+</main>
+
+<script>
+  const BASE = {
+    fe:     328560,   // año completo (12 eventos × €27.380) — para 2027 y 2028
+    fe26:   136900,   // 2026 restante: 5 eventos pendientes × €27.380
+    e1:     107717,
+    exE:    20000
+  };
+
+  const EUR = n => new Intl.NumberFormat('de-DE', {
+    style: 'currency', currency: 'EUR',
+    minimumFractionDigits: 0, maximumFractionDigits: 0
+  }).format(Math.round(n));
+
+  const P1 = n => (n * 100).toFixed(1) + '%';
+  const P0 = n => Math.round(n * 100) + '%';
+
+  function dColor(retention) {
+    const d = 1 - retention;
+    if (d > 0.55) return 'var(--red)';
+    if (d > 0.30) return 'var(--amber)';
+    return 'var(--green)';
+  }
+
+  function getVal(id) { return parseInt(document.getElementById(id).value, 10); }
+
+  function compound(...ids) {
+    return ids.reduce((acc, id) => acc * (1 - getVal(id) / 100), 1);
+  }
+
+  function setEl(id, val, color) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = val;
+    if (color) el.style.color = color;
+  }
+
+  function update() {
+    /* ── FORMULA E ──
+       2026 (fe_y1): BASE = €136.900 (5 eventos restantes × €27.380) · sin descuentos
+       2027 (fe_y2) y 2028 (fe_y3): BASE = €328.560 (temporada completa) · con todos los descuentos */
+    const feRet   = compound('fe_cancel', 'fe_badpay', 'fe_reduce', 'fe_penal');
+    const feG26   = BASE.fe26 * getVal('fe_y1') / 100;
+    const feGFut  = BASE.fe  * (getVal('fe_y2') + getVal('fe_y3')) / 100;
+    const feGross = feG26 + feGFut;
+    const feNet26 = feG26;
+    const feNetFut= feGFut * feRet;
+    const feNet   = feNet26 + feNetFut;
+
+    /* ── E1 SERIES ──
+       2026 (e1_y1): solo mal pago aplica
+       2027–2029 (e1_y2 + e1_y3 + e1_y35×0.5): cancel + reduce + penal + badpay */
+    const e1BadPay = 1 - getVal('e1_badpay') / 100;
+    const e1RetFut = (1 - getVal('e1_cancel')/100) * e1BadPay * (1 - getVal('e1_reduce')/100) * (1 - getVal('e1_penal')/100);
+    const e1G26    = BASE.e1 * getVal('e1_y1') / 100;
+    const e1GFut   = BASE.e1 * (getVal('e1_y2') + getVal('e1_y3') + getVal('e1_y35') * 0.5) / 100;
+    const e1Gross  = e1G26 + e1GFut;
+    const e1Net26  = e1G26 * e1BadPay;
+    const e1NetFut = e1GFut * e1RetFut;
+    const e1NetRisk= e1Net26 + e1NetFut;
+    // Blended retention for badge
+    const e1Ret    = e1Gross > 0 ? e1NetRisk / e1Gross : 1;
+
+    const e1Debt      = parseInt(document.getElementById('e1_debt').value, 10);
+    const e1DebtDisc  = getVal('e1_debt_disc') / 100;
+    const e1DebtDeduct= e1Debt * e1DebtDisc;
+
+    /* ── EXTREME H ──
+       2026 (exE_y1): solo mal pago aplica
+       2027–2029 (exE_y2 + exE_y3): cancel + reduce + penal + badpay */
+    const exBadPay  = 1 - getVal('exE_badpay') / 100;
+    const exRetFut  = (1 - getVal('exE_cancel')/100) * exBadPay * (1 - getVal('exE_reduce')/100) * (1 - getVal('exE_penal')/100);
+    const exG26     = BASE.exE * getVal('exE_y1') / 100;
+    const exGFut    = BASE.exE * (getVal('exE_y2') + getVal('exE_y3')) / 100;
+    const exEGross  = exG26 + exGFut;
+    const exNet26   = exG26 * exBadPay;
+    const exNetFut  = exGFut * exRetFut;
+    const exENet    = exNet26 + exNetFut;
+    const exERet    = exEGross > 0 ? exENet / exEGross : 1;
+
+    /* ── TOTALS ── */
+    const sub   = feNet + e1NetRisk + exENet;
+    const early = getVal('early') / 100;
+    const total = sub * (1 - early) - e1DebtDeduct;
+
+    const faceTot = BASE.fe26 + BASE.fe * 2 + BASE.e1 * 3.5 + BASE.exE * 3;
+    const discTot = ((faceTot - total) / faceTot * 100).toFixed(0);
+
+    /* Retention badges */
+    setEl('ret-fe',  P0(feRet),  dColor(feRet));
+    setEl('ret-e1',  P0(e1Ret),  dColor(e1Ret));
+    setEl('ret-exE', P0(exERet), dColor(exERet));
+
+    /* FE mini stats */
+    setEl('ms-fe-26', EUR(feNet26));
+    setEl('ms-fe-n',  EUR(feNetFut), dColor(feRet));
+    setEl('ms-fe-g',  EUR(feGross));
+
+    /* E1 mini stats */
+    setEl('ms-e1-26',  EUR(e1Net26));
+    setEl('ms-e1-n',   EUR(e1NetFut), dColor(e1Ret));
+    setEl('ms-e1-debt','−' + EUR(e1DebtDeduct));
+    setEl('ms-e1-g',   EUR(e1Gross));
+    setEl('e1_debt_deduct', '−' + EUR(e1DebtDeduct));
+
+    /* ExH mini stats */
+    setEl('ms-exE-26', EUR(exNet26));
+    setEl('ms-exE-n',  EUR(exNetFut), dColor(exERet));
+    setEl('ms-exE-g',  EUR(exEGross));
+
+    /* Table */
+    setEl('tg-fe',  EUR(feGross));
+    setEl('tr-fe',  P1(feRet),  dColor(feRet));
+    setEl('td-fe',  '−' + P1(1 - feRet));
+    setEl('tn-fe',  EUR(feNet));
+
+    setEl('tg-e1',  EUR(e1Gross));
+    setEl('tr-e1',  P1(e1Ret),  dColor(e1Ret));
+    setEl('td-e1',  '−' + P1(1 - e1Ret));
+    setEl('tn-e1',  EUR(e1NetRisk));
+
+    setEl('tg-exE',  EUR(exEGross));
+    setEl('tr-exE',  P1(exERet), dColor(exERet));
+    setEl('td-exE',  '−' + P1(1 - exERet));
+    setEl('tn-exE',  EUR(exENet));
+
+    setEl('t-sub',  EUR(sub));
+    setEl('t-disc-label', `— Descuento pago anticipado (${getVal('early')}%)`);
+    setEl('t-disc-val', '−' + EUR(sub * early));
+    setEl('t-debt-label', `— Deuda E1 recuperada (${getVal('e1_debt_disc')}% de ${EUR(e1Debt)})`);
+    setEl('t-debt-val', '−' + EUR(e1DebtDeduct));
+    setEl('t-total', EUR(total));
+
+    /* Result bar */
+    setEl('rb-face',  EUR(faceTot));
+    setEl('rb-gross', EUR(feGross + e1Gross + exEGross));
+    setEl('rb-net',   EUR(sub));
+    setEl('rb-total', EUR(total));
+    setEl('rb-disc',  `−${discTot}% vs nominal`);
+
+    /* Saving display */
+    setEl('saving-early', '−' + EUR(sub * early));
+  }
+
+  /* Wire all sliders to show their value + trigger recalc */
+  const sliderMap = {
+    fe_cancel:  'v-fe_cancel',  fe_badpay:  'v-fe_badpay',
+    fe_reduce:  'v-fe_reduce',  fe_penal:   'v-fe_penal',
+    e1_cancel:  'v-e1_cancel',  e1_badpay:  'v-e1_badpay',
+    e1_reduce:  'v-e1_reduce',  e1_penal:   'v-e1_penal',
+    exE_cancel: 'v-exE_cancel', exE_badpay: 'v-exE_badpay',
+    exE_reduce: 'v-exE_reduce', exE_penal:  'v-exE_penal',
+    fe_y1: 'v-fe_y1', fe_y2: 'v-fe_y2', fe_y3: 'v-fe_y3',
+    e1_y1: 'v-e1_y1', e1_y2: 'v-e1_y2', e1_y3: 'v-e1_y3', e1_y35: 'v-e1_y35',
+    exE_y1: 'v-exE_y1', exE_y2: 'v-exE_y2', exE_y3: 'v-exE_y3',
+    early: 'v-early',
+    e1_debt_disc: 'v-e1_debt_disc'
+  };
+
+  Object.entries(sliderMap).forEach(([sliderId, labelId]) => {
+    const slider = document.getElementById(sliderId);
+    const label  = document.getElementById(labelId);
+    if (!slider || !label) return;
+    slider.addEventListener('input', () => {
+      label.textContent = slider.value + '%';
+      update();
+    });
+  });
+
+  /* Special handler for debt slider (shows EUR, not %) */
+  const debtSlider = document.getElementById('e1_debt');
+  const debtLabel  = document.getElementById('v-e1_debt');
+  debtSlider.addEventListener('input', () => {
+    debtLabel.textContent = EUR(parseInt(debtSlider.value, 10));
+    update();
+  });
+
+  /* Color the slider track fill dynamically */
+  function updateSliderFill(slider, max) {
+    const pct = (slider.value / (max || slider.max)) * 100;
+    slider.style.background = `linear-gradient(to right, var(--blue) 0%, var(--blue) ${pct}%, var(--bg3) ${pct}%, var(--bg3) 100%)`;
+  }
+
+  document.querySelectorAll('input[type=range]').forEach(s => {
+    const syncFill = () => updateSliderFill(s);
+    s.addEventListener('input', syncFill);
+    syncFill();
+  });
+
+  /* ── 2026 ANNUAL TABLE ── */
+  const rows2026 = [
+    // mes, campeonato, concepto, importe, paid
+    { mes:'Dic–Ene', ch:'Formula E',   concepto:'SAO + MEX + MIA',         importe:82140,  paid:true  },
+    { mes:'Dic–Ene', ch:'E1 Eventos',  concepto:'JED + Retainer anual',    importe:9981,   paid:true  },
+    { mes:'Dic–Ene', ch:'E1 GFX',      concepto:'TV GFX Project + JED',    importe:2248,   paid:true  },
+    { mes:'Feb',     ch:'Formula E',   concepto:'JED (doble)',              importe:27380,  paid:true  },
+    { mes:'Feb',     ch:'E1 Eventos',  concepto:'Retainer anual',           importe:3981,   paid:true  },
+    { mes:'Mar',     ch:'Formula E',   concepto:'Madrid',                   importe:27380,  paid:true  },
+    { mes:'Mar',     ch:'E1 Eventos',  concepto:'Retainer anual',           importe:3981,   paid:true  },
+    { mes:'Abr',     ch:'E1 Eventos',  concepto:'Retainer anual + Como',   importe:7968,   paid:true  },
+    { mes:'Abr',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:true  },
+    { mes:'May',     ch:'Formula E',   concepto:'Berlín + Mónaco',          importe:54760,  paid:true  },
+    { mes:'May',     ch:'Formula E',   concepto:'TBC (pendiente)',          importe:27380,  paid:false },
+    { mes:'May',     ch:'E1 Eventos',  concepto:'Retainer anual',           importe:3981,   paid:true  },
+    { mes:'Jun',     ch:'Formula E',   concepto:'TBC',                      importe:27380,  paid:false },
+    { mes:'Jun',     ch:'E1 Eventos',  concepto:'Retainer anual + Dubrovnik',importe:7968,  paid:false },
+    { mes:'Jun',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:false },
+    { mes:'Jul',     ch:'Formula E',   concepto:'Shanghai + Tokyo',         importe:54760,  paid:false },
+    { mes:'Jul',     ch:'E1 Eventos',  concepto:'Retainer anual + Monaco',  importe:7968,   paid:false },
+    { mes:'Jul',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:false },
+    { mes:'Ago',     ch:'Formula E',   concepto:'Londres (doble)',          importe:27380,  paid:false },
+    { mes:'Ago',     ch:'E1 Eventos',  concepto:'Retainer anual',           importe:9981,   paid:false },
+    { mes:'Ago',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:false },
+    { mes:'Sep',     ch:'E1 Eventos',  concepto:'Retainer anual + Africa',  importe:9981,   paid:false },
+    { mes:'Sep',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:false },
+    { mes:'Oct',     ch:'E1 Eventos',  concepto:'Retainer anual + Lagos',   importe:9981,   paid:false },
+    { mes:'Oct',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:false },
+    { mes:'Nov',     ch:'E1 Eventos',  concepto:'Retainer anual + USA',     importe:9981,   paid:false },
+    { mes:'Nov',     ch:'E1 GFX',      concepto:'GFX',                     importe:2248,   paid:false },
+    { mes:'Nov',     ch:'Extreme E/H', concepto:'Evento estimado',          importe:20000,  paid:false },
+    { mes:'Dic',     ch:'E1 Eventos',  concepto:'Retainer anual',           importe:3981,   paid:false },
+  ];
+
+  function render2026Table() {
+    const tbody = document.getElementById('tbody-2026');
+    let lastMes = '';
+    let html = '';
+
+    rows2026.forEach((r, i) => {
+      const mesLabel = r.mes !== lastMes ? r.mes : '';
+      lastMes = r.mes;
+
+      html += `<tr style="border-bottom:0.5px solid var(--border);" id="row2026-${i}">
+        <td style="padding:7px 10px;color:var(--txt3);font-size:11px;white-space:nowrap;">${mesLabel}</td>
+        <td style="padding:7px 10px;white-space:nowrap;">${r.ch}</td>
+        <td style="padding:7px 10px;color:var(--txt2);">${r.concepto}</td>
+        <td style="padding:7px 10px;text-align:right;font-family:var(--mono);font-size:11px;white-space:nowrap;" id="amt2026-${i}">${EUR(r.importe)}</td>
+        <td style="padding:5px 10px;text-align:center;">
+          <div style="display:inline-flex;border-radius:20px;overflow:hidden;border:1px solid var(--border2);background:var(--bg3);">
+            <button onclick="setPaid(${i}, true)" id="btn-paid-${i}" style="
+              font-size:10px;font-family:var(--sans);font-weight:500;
+              padding:4px 10px;cursor:pointer;border:none;
+              transition:all 0.15s;white-space:nowrap;
+              ${r.paid
+                ? 'background:rgba(31,207,160,0.20);color:var(--green);'
+                : 'background:transparent;color:var(--txt3);'}
+            ">✓ Pagado</button><button onclick="setPaid(${i}, false)" id="btn-pend-${i}" style="
+              font-size:10px;font-family:var(--sans);font-weight:500;
+              padding:4px 10px;cursor:pointer;border:none;border-left:1px solid var(--border2);
+              transition:all 0.15s;white-space:nowrap;
+              ${!r.paid
+                ? 'background:rgba(245,166,35,0.18);color:var(--amber);'
+                : 'background:transparent;color:var(--txt3);'}
+            ">● Pendiente</button>
+          </div>
+        </td>
+      </tr>`;
+    });
+
+    tbody.innerHTML = html;
+    recalc2026();
+  }
+
+  function setPaid(i, paid) {
+    rows2026[i].paid = paid;
+    const btnPaid = document.getElementById(`btn-paid-${i}`);
+    const btnPend = document.getElementById(`btn-pend-${i}`);
+    const amt     = document.getElementById(`amt2026-${i}`);
+
+    if (paid) {
+      btnPaid.style.background = 'rgba(31,207,160,0.20)';
+      btnPaid.style.color      = 'var(--green)';
+      btnPend.style.background = 'transparent';
+      btnPend.style.color      = 'var(--txt3)';
+      amt.style.color          = 'var(--txt2)';
+    } else {
+      btnPend.style.background = 'rgba(245,166,35,0.18)';
+      btnPend.style.color      = 'var(--amber)';
+      btnPaid.style.background = 'transparent';
+      btnPaid.style.color      = 'var(--txt3)';
+      amt.style.color          = 'var(--amber)';
+    }
+    recalc2026();
+  }
+
+  function recalc2026() {
+    let totalPaid = 0, totalPending = 0;
+    rows2026.forEach(r => {
+      if (r.paid) totalPaid += r.importe;
+      else totalPending += r.importe;
+    });
+    document.getElementById('foot-paid').textContent = EUR(totalPaid);
+    document.getElementById('foot-pending').textContent = EUR(totalPending);
+    document.getElementById('foot-total2026').textContent = EUR(totalPaid + totalPending);
+  }
+
+  render2026Table();
+
+  /* Initial render */
+  update();
+</script>
+</body>
+</html>
