@@ -266,7 +266,7 @@
     <div class="header-logo">AKS</div>
     <div>
       <div class="header-title">Calculadora de Liquidación — <span style="color:var(--gold)">Luis Pachón</span></div>
-      <div class="header-sub">Al Kamel Systems · Uso interno · 2026</div>
+      <div class="header-sub">Al Kamel Systems · Uso interno · El deal cubre <strong style="color:var(--amber)">2027–2029</strong> · 2026 queda fuera del acuerdo</div>
     </div>
   </div>
   <div class="header-badge">FE S12 · E1 2026 · Extreme E/H</div>
@@ -277,7 +277,7 @@
   <div class="rbar-cell">
     <div class="rbar-label">Valor nominal máximo</div>
     <div class="rbar-val" id="rb-face">—</div>
-    <div class="rbar-note">3,5 años · sin descuentos ni probabilidad</div>
+    <div class="rbar-note">2027–2029 · sin descuentos ni probabilidad</div>
     <div class="rbar-explain">Lo que Luis cobraría si todo se cumple al 100%, sin ningún riesgo.</div>
   </div>
   <div class="rbar-cell">
@@ -322,19 +322,25 @@
         </div>
       </div>
       <div style="font-size:10px;background:var(--bg3);border-radius:6px;padding:7px 10px;margin-bottom:10px;color:var(--txt2);line-height:1.6;">
-        <span style="color:var(--green);font-weight:500;">2026 restante — base €136.900</span> · 5 eventos pendientes × €27.380 · sin descuentos.<br>
-        <span style="color:var(--txt3);">Ya pagados: SAO, MEX, MIA, JED×2, MAD, BER×2, MON×2 (7 eventos · €191.660)</span><br>
-        <span style="color:var(--amber);font-weight:500;">2027–2028 — base €328.560/año</span> · Temporada completa · con descuentos.
+        <span style="color:var(--txt3);">2026 — fuera del cálculo</span> · Ya comprometido y en curso.<br>
+        <span style="color:var(--amber);font-weight:500;">2027 — Opción 1 · 2028 — Opción 2 · 2029 — Opción 3</span> · Base €328.560/temporada · con descuentos.
       </div>
       <hr class="divider">
-      <div class="year-tag">Aplica · 2027–2028</div>
+      <div style="display:flex;gap:12px;font-size:10px;margin-bottom:10px;padding:6px 10px;background:var(--bg3);border-radius:6px;">
+        <span style="color:var(--txt3);">Escala:</span>
+        <span style="color:var(--green);">0% = sin riesgo, cobra todo</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--red);">100% = riesgo total, no cobra nada</span>
+      </div>
+      <div class="year-tag">Aplica · 2027–2029</div>
       <div class="s-row"><span class="s-label">Cancelación eventos</span><input type="range" min="0" max="100" step="1" value="5" id="fe_cancel"><span class="s-val" id="v-fe_cancel">5%</span></div>
       <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="3" id="fe_badpay"><span class="s-val" id="v-fe_badpay">3%</span></div>
       <div class="s-row"><span class="s-label">Reducción de servicios</span><input type="range" min="0" max="100" step="1" value="15" id="fe_reduce"><span class="s-val" id="v-fe_reduce">15%</span></div>
       <div class="s-row"><span class="s-label">Riesgo penalidades</span><input type="range" min="0" max="100" step="1" value="5" id="fe_penal"><span class="s-val" id="v-fe_penal">5%</span></div>
       <div class="mini-stats">
-        <div class="ms-row"><span class="ms-label">2026 restante (5 eventos)</span><span class="ms-val col-green" id="ms-fe-26">—</span></div>
-        <div class="ms-row"><span class="ms-label">2027–28 (ajustado)</span><span class="ms-val" id="ms-fe-n">—</span></div>
+        <div class="ms-row"><span class="ms-label">2027 (ajustado)</span><span class="ms-val" id="ms-fe-27">—</span></div>
+        <div class="ms-row"><span class="ms-label">2028 (ajustado)</span><span class="ms-val" id="ms-fe-28">—</span></div>
+        <div class="ms-row"><span class="ms-label">2029 (ajustado)</span><span class="ms-val" id="ms-fe-29">—</span></div>
         <div class="ms-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px;"><span class="ms-label">Comisión probable total</span><span class="ms-val" id="ms-fe-g">—</span></div>
       </div>
     </div>
@@ -353,19 +359,31 @@
         </div>
       </div>
       <div style="font-size:10px;background:var(--bg3);border-radius:6px;padding:7px 10px;margin-bottom:10px;color:var(--txt2);line-height:1.5;">
-        <span style="color:var(--amber);font-weight:500;">2026</span> · Mal pago + deuda pendiente.<br>
-        <span style="color:var(--amber);font-weight:500;">2027–2029</span> · Cancelación, reducción y penalidades.
+        <span style="color:var(--txt3);">2026 — fuera del cálculo</span> · Ver detalle en sección inferior.<br>
+        <span style="color:var(--amber);font-weight:500;">2027–2029</span> · Cancelación, reducción y penalidades + mal pago.
       </div>
       <hr class="divider">
-      <div class="year-tag">Aplica · 2026</div>
-      <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="35" id="e1_badpay"><span class="s-val" id="v-e1_badpay">35%</span></div>
-      <div class="year-tag" style="margin-top:6px;">Aplica · 2027–2029</div>
+      <div style="display:flex;gap:12px;font-size:10px;margin-bottom:10px;padding:6px 10px;background:var(--bg3);border-radius:6px;">
+        <span style="color:var(--txt3);">Escala:</span>
+        <span style="color:var(--green);">0% = sin riesgo, cobra todo</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--red);">100% = riesgo total, no cobra nada</span>
+      </div>
+      <div class="year-tag">Aplica · 2027–2029</div>
       <div class="s-row"><span class="s-label">Cancelación eventos</span><input type="range" min="0" max="100" step="1" value="25" id="e1_cancel"><span class="s-val" id="v-e1_cancel">25%</span></div>
+      <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="35" id="e1_badpay"><span class="s-val" id="v-e1_badpay">35%</span></div>
       <div class="s-row"><span class="s-label">Reducción de servicios</span><input type="range" min="0" max="100" step="1" value="15" id="e1_reduce"><span class="s-val" id="v-e1_reduce">15%</span></div>
       <div class="s-row"><span class="s-label">Riesgo penalidades</span><input type="range" min="0" max="100" step="1" value="5" id="e1_penal"><span class="s-val" id="v-e1_penal">5%</span></div>
       <hr class="divider">
-      <div class="year-tag">Aplica · 2026</div>
-      <div style="font-size:11px;font-weight:500;color:var(--txt2);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Deuda pendiente E1</div>
+      <div style="font-size:11px;font-weight:500;color:var(--txt2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">Deuda pendiente E1 (recuperar del fee)</div>
+      <div style="display:flex;gap:12px;font-size:10px;margin-bottom:10px;padding:6px 10px;background:var(--bg3);border-radius:6px;">
+        <span style="color:var(--txt3);">Deuda:</span>
+        <span style="color:var(--green);">€50k = deuda baja</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--red);">€400k = deuda alta</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--txt2);">Descuento: % que se perdona al liquidar</span>
+      </div>
       <div class="s-row" style="align-items:flex-start;gap:8px;margin-bottom:4px;">
         <span class="s-label" style="padding-top:2px;">Deuda en cash</span>
         <div style="flex:1;min-width:0;">
@@ -382,7 +400,6 @@
         Importe descontado del fee: <span id="e1_debt_deduct" style="color:var(--red);font-family:var(--mono);">—</span>
       </div>
       <div class="mini-stats">
-        <div class="ms-row"><span class="ms-label">2026 (mal pago aplicado)</span><span class="ms-val" id="ms-e1-26">—</span></div>
         <div class="ms-row"><span class="ms-label">2027–29 (ajustado)</span><span class="ms-val" id="ms-e1-n">—</span></div>
         <div class="ms-row"><span class="ms-label">− Deuda recuperada</span><span class="ms-val col-red" id="ms-e1-debt">—</span></div>
         <div class="ms-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px;"><span class="ms-label">Comisión probable total</span><span class="ms-val" id="ms-e1-g">—</span></div>
@@ -403,18 +420,22 @@
         </div>
       </div>
       <div style="font-size:10px;background:var(--bg3);border-radius:6px;padding:7px 10px;margin-bottom:10px;color:var(--txt2);line-height:1.5;">
-        <span style="color:var(--amber);font-weight:500;">2026</span> · Solo mal pago de clientes.<br>
-        <span style="color:var(--amber);font-weight:500;">2027–2029</span> · Cancelación, reducción y penalidades.
+        <span style="color:var(--txt3);">2026 — fuera del cálculo</span> · Ver detalle en sección inferior.<br>
+        <span style="color:var(--amber);font-weight:500;">2027–2029</span> · Todos los descuentos aplican.
       </div>
       <hr class="divider">
-      <div class="year-tag">Aplica · 2026</div>
+      <div style="display:flex;gap:12px;font-size:10px;margin-bottom:10px;padding:6px 10px;background:var(--bg3);border-radius:6px;">
+        <span style="color:var(--txt3);">Escala:</span>
+        <span style="color:var(--green);">0% = sin riesgo, cobra todo</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--red);">100% = riesgo total, no cobra nada</span>
+      </div>
+      <div class="year-tag">Aplica · 2027–2029</div>
       <div class="s-row"><span class="s-label">Mal pago de clientes</span><input type="range" min="0" max="100" step="1" value="20" id="exE_badpay"><span class="s-val" id="v-exE_badpay">20%</span></div>
-      <div class="year-tag" style="margin-top:6px;">Aplica · 2027–2029</div>
       <div class="s-row"><span class="s-label">Cancelación eventos</span><input type="range" min="0" max="100" step="1" value="45" id="exE_cancel"><span class="s-val" id="v-exE_cancel">45%</span></div>
       <div class="s-row"><span class="s-label">Reducción de servicios</span><input type="range" min="0" max="100" step="1" value="40" id="exE_reduce"><span class="s-val" id="v-exE_reduce">40%</span></div>
       <div class="s-row"><span class="s-label">Riesgo penalidades</span><input type="range" min="0" max="100" step="1" value="5" id="exE_penal"><span class="s-val" id="v-exE_penal">5%</span></div>
       <div class="mini-stats">
-        <div class="ms-row"><span class="ms-label">2026 (mal pago aplicado)</span><span class="ms-val" id="ms-exE-26">—</span></div>
         <div class="ms-row"><span class="ms-label">2027–29 (ajustado)</span><span class="ms-val" id="ms-exE-n">—</span></div>
         <div class="ms-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px;"><span class="ms-label">Comisión probable total</span><span class="ms-val" id="ms-exE-g">—</span></div>
       </div>
@@ -430,37 +451,48 @@
     <!-- FE CONTRACT -->
     <div class="card">
       <div class="card-title">Formula E — Temporadas cubiertas</div>
-      <div class="card-sub" style="margin-bottom:12px">1 temporada garantizada + 2 opciones extensibles</div>
+      <div class="card-sub" style="margin-bottom:8px">2026 ya comprometido · Se calcula sobre 2027, 2028 y 2029</div>
+      <div style="display:flex;gap:16px;font-size:10px;margin-bottom:14px;padding:7px 10px;background:var(--bg3);border-radius:6px;">
+        <span>Escala: </span>
+        <span style="color:var(--red);">0% = opción no se ejerce</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--green);">100% = opción ejercida con certeza</span>
+      </div>
 
-      <div class="prob-sub-title">Temporada 1 — Garantizada</div>
-      <div class="s-row"><span class="s-label" style="width:120px">Año 1 (contrato)</span><input type="range" min="0" max="100" step="5" value="100" id="fe_y1"><span class="s-val col-muted" id="v-fe_y1">100%</span></div>
-
-      <div class="prob-sub-title">Temporada 2 — Opción 1</div>
+      <div class="prob-sub-title">2027 — Opción 1 (primera renovación)</div>
       <div class="s-row"><span class="s-label" style="width:120px">Probabilidad ejercicio</span><input type="range" min="0" max="100" step="5" value="70" id="fe_y2"><span class="s-val col-muted" id="v-fe_y2">70%</span></div>
 
-      <div class="prob-sub-title">Temporada 3 — Opción 2</div>
+      <div class="prob-sub-title">2028 — Opción 2 (segunda renovación)</div>
       <div class="s-row"><span class="s-label" style="width:120px">Probabilidad ejercicio</span><input type="range" min="0" max="100" step="5" value="45" id="fe_y3"><span class="s-val col-muted" id="v-fe_y3">45%</span></div>
 
+      <div class="prob-sub-title">2029 — Opción 3 (tercera renovación)</div>
+      <div class="s-row"><span class="s-label" style="width:120px">Probabilidad ejercicio</span><input type="range" min="0" max="100" step="5" value="25" id="fe_y4"><span class="s-val col-muted" id="v-fe_y4">25%</span></div>
+
       <div style="font-size:10px;color:var(--txt3);margin-top:10px;line-height:1.6">
-        Las opciones sólo se ejercen si el contrato base se renueva. La opción 2 condiciona la probabilidad implícita de la opción 1.
+        Las opciones se ejercen si el contrato base se renueva. La opción 2 está condicionada a que se haya ejercido la opción 1.
       </div>
     </div>
 
     <!-- E1 + ExE PROBABILITIES -->
     <div class="card">
       <div class="card-title">E1 Series y Extreme E — Viabilidad futura</div>
-      <div class="card-sub" style="margin-bottom:12px">Probabilidad de que el campeonato siga activo cada año</div>
+      <div class="card-sub" style="margin-bottom:8px">2026 fuera del cálculo · Probabilidad de que el campeonato siga operando cada año</div>
+      <div style="display:flex;gap:16px;font-size:10px;margin-bottom:14px;padding:7px 10px;background:var(--bg3);border-radius:6px;">
+        <span>Escala: </span>
+        <span style="color:var(--red);">0% = seguro que desaparece</span>
+        <span style="color:var(--txt3);">·</span>
+        <span style="color:var(--green);">100% = seguro que continúa</span>
+      </div>
 
-      <div class="prob-sub-title">E1 Series (riesgo de desaparición)</div>
-      <div class="s-row"><span class="s-label" style="width:120px">Año 1</span><input type="range" min="0" max="100" step="5" value="100" id="e1_y1"><span class="s-val col-muted" id="v-e1_y1">100%</span></div>
-      <div class="s-row"><span class="s-label" style="width:120px">Año 2</span><input type="range" min="0" max="100" step="5" value="60" id="e1_y2"><span class="s-val col-muted" id="v-e1_y2">60%</span></div>
-      <div class="s-row"><span class="s-label" style="width:120px">Año 3</span><input type="range" min="0" max="100" step="5" value="35" id="e1_y3"><span class="s-val col-muted" id="v-e1_y3">35%</span></div>
-      <div class="s-row"><span class="s-label" style="width:120px">Semestre 3,5</span><input type="range" min="0" max="100" step="5" value="20" id="e1_y35"><span class="s-val col-muted" id="v-e1_y35">20%</span></div>
+      <div class="prob-sub-title">E1 Series — probabilidad de continuidad</div>
+      <div class="s-row"><span class="s-label" style="width:120px">2027</span><input type="range" min="0" max="100" step="5" value="60" id="e1_y2"><span class="s-val col-muted" id="v-e1_y2">60%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">2028</span><input type="range" min="0" max="100" step="5" value="35" id="e1_y3"><span class="s-val col-muted" id="v-e1_y3">35%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">2029</span><input type="range" min="0" max="100" step="5" value="20" id="e1_y35"><span class="s-val col-muted" id="v-e1_y35">20%</span></div>
 
-      <div class="prob-sub-title">Extreme E / H (1 evento/año)</div>
-      <div class="s-row"><span class="s-label" style="width:120px">Evento año 1</span><input type="range" min="0" max="100" step="5" value="70" id="exE_y1"><span class="s-val col-muted" id="v-exE_y1">70%</span></div>
-      <div class="s-row"><span class="s-label" style="width:120px">Evento año 2</span><input type="range" min="0" max="100" step="5" value="40" id="exE_y2"><span class="s-val col-muted" id="v-exE_y2">40%</span></div>
-      <div class="s-row"><span class="s-label" style="width:120px">Evento año 3</span><input type="range" min="0" max="100" step="5" value="25" id="exE_y3"><span class="s-val col-muted" id="v-exE_y3">25%</span></div>
+      <div class="prob-sub-title" style="margin-top:10px;">Extreme E / H — probabilidad de continuidad</div>
+      <div class="s-row"><span class="s-label" style="width:120px">2027</span><input type="range" min="0" max="100" step="5" value="40" id="exE_y2"><span class="s-val col-muted" id="v-exE_y2">40%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">2028</span><input type="range" min="0" max="100" step="5" value="25" id="exE_y3"><span class="s-val col-muted" id="v-exE_y3">25%</span></div>
+      <div class="s-row"><span class="s-label" style="width:120px">2029</span><input type="range" min="0" max="100" step="5" value="15" id="exE_y4"><span class="s-val col-muted" id="v-exE_y4">15%</span></div>
     </div>
   </div>
 
@@ -468,10 +500,16 @@
   <div class="section-title">Descuento por pago anticipado</div>
 
   <div class="card" style="margin-bottom:28px">
-    <div class="card-title">Descuento TVM — Pago de 3,5 años en un único desembolso</div>
+    <div class="card-title">Descuento TVM — Pago de 2027–2029 en un único desembolso</div>
+    <div style="display:flex;gap:12px;font-size:10px;margin:8px 0 4px;padding:6px 10px;background:var(--bg3);border-radius:6px;">
+      <span style="color:var(--txt3);">Escala:</span>
+      <span style="color:var(--green);">0% = sin descuento por adelanto</span>
+      <span style="color:var(--txt3);">·</span>
+      <span style="color:var(--red);">100% = AKS no paga nada por adelantar</span>
+    </div>
     <div class="early-row">
       <div class="early-note">
-        Al pagar la totalidad de 3,5 años de comisiones en un solo pago inmediato,<br>
+        Al pagar la totalidad de las comisiones futuras (2027–2029) en un solo pago inmediato,<br>
         AKS asume el riesgo de liquidez y adelanta valor temporal. El descuento compensa ese adelanto.<br>
         <span style="color:var(--txt3)">A un 10% de descuento total ≈ tasa TVM anual implícita del ~4,3%</span>
       </div>
@@ -502,24 +540,24 @@
       </thead>
       <tbody>
         <tr>
-          <td>Formula E <span style="color:var(--txt3);font-size:10px">— 3 temporadas</span></td>
-          <td class="mono col-muted">€328.560</td>
+          <td>Formula E <span style="color:var(--txt3);font-size:10px">— 2027 + 2028 + 2029</span></td>
+          <td class="mono col-muted">€328.560/año</td>
           <td class="mono" id="tg-fe">—</td>
           <td class="mono" id="tr-fe">—</td>
           <td class="mono col-red" id="td-fe">—</td>
           <td class="mono" id="tn-fe">—</td>
         </tr>
         <tr>
-          <td>E1 Series <span style="color:var(--txt3);font-size:10px">— 3,5 años</span></td>
-          <td class="mono col-muted">€107.717</td>
+          <td>E1 Series <span style="color:var(--txt3);font-size:10px">— 2027 · 2028 · 2029</span></td>
+          <td class="mono col-muted">€107.717/año</td>
           <td class="mono" id="tg-e1">—</td>
           <td class="mono" id="tr-e1">—</td>
           <td class="mono col-red" id="td-e1">—</td>
           <td class="mono" id="tn-e1">—</td>
         </tr>
         <tr>
-          <td>Extreme E/H <span style="color:var(--txt3);font-size:10px">— 3 eventos/año</span></td>
-          <td class="mono col-muted">€20.000</td>
+          <td>Extreme E/H <span style="color:var(--txt3);font-size:10px">— 2027 · 2028 · 2029</span></td>
+          <td class="mono col-muted">€20.000/año</td>
           <td class="mono" id="tg-exE">—</td>
           <td class="mono" id="tr-exE">—</td>
           <td class="mono col-red" id="td-exE">—</td>
@@ -547,7 +585,7 @@
   </div>
 
   <!-- 2026 ANNUAL BREAKDOWN -->
-  <div class="section-title" style="margin-top:28px;">Detalle de comisiones 2026 — Luis Pachón</div>
+  <div class="section-title" style="margin-top:28px;">Referencia 2026 — Comisiones del año en curso (fuera del cálculo)</div>
 
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
@@ -645,55 +683,39 @@
   }
 
   function update() {
-    /* ── FORMULA E ──
-       2026 (fe_y1): BASE = €136.900 (5 eventos restantes × €27.380) · sin descuentos
-       2027 (fe_y2) y 2028 (fe_y3): BASE = €328.560 (temporada completa) · con todos los descuentos */
-    const feRet   = compound('fe_cancel', 'fe_badpay', 'fe_reduce', 'fe_penal');
-    const feG26   = BASE.fe26 * getVal('fe_y1') / 100;
-    const feGFut  = BASE.fe  * (getVal('fe_y2') + getVal('fe_y3')) / 100;
-    const feGross = feG26 + feGFut;
-    const feNet26 = feG26;
-    const feNetFut= feGFut * feRet;
-    const feNet   = feNet26 + feNetFut;
+    /* ── FORMULA E — 2027 + 2028 + 2029 ──
+       All 4 discounts apply to all three years */
+    const feRet    = compound('fe_cancel', 'fe_badpay', 'fe_reduce', 'fe_penal');
+    const feG27    = BASE.fe * getVal('fe_y2') / 100;
+    const feG28    = BASE.fe * getVal('fe_y3') / 100;
+    const feG29    = BASE.fe * getVal('fe_y4') / 100;
+    const feGross  = feG27 + feG28 + feG29;
+    const feNet    = feGross * feRet;
 
-    /* ── E1 SERIES ──
-       2026 (e1_y1): solo mal pago aplica
-       2027–2029 (e1_y2 + e1_y3 + e1_y35×0.5): cancel + reduce + penal + badpay */
-    const e1BadPay = 1 - getVal('e1_badpay') / 100;
-    const e1RetFut = (1 - getVal('e1_cancel')/100) * e1BadPay * (1 - getVal('e1_reduce')/100) * (1 - getVal('e1_penal')/100);
-    const e1G26    = BASE.e1 * getVal('e1_y1') / 100;
+    /* ── E1 SERIES — 2027 + 2028 + 2029 ──
+       All 4 discounts apply */
+    const e1Ret    = compound('e1_cancel', 'e1_badpay', 'e1_reduce', 'e1_penal');
     const e1GFut   = BASE.e1 * (getVal('e1_y2') + getVal('e1_y3') + getVal('e1_y35') * 0.5) / 100;
-    const e1Gross  = e1G26 + e1GFut;
-    const e1Net26  = e1G26 * e1BadPay;
-    const e1NetFut = e1GFut * e1RetFut;
-    const e1NetRisk= e1Net26 + e1NetFut;
-    // Blended retention for badge
-    const e1Ret    = e1Gross > 0 ? e1NetRisk / e1Gross : 1;
+    const e1Gross  = e1GFut;
+    const e1NetRisk= e1GFut * e1Ret;
 
     const e1Debt      = parseInt(document.getElementById('e1_debt').value, 10);
     const e1DebtDisc  = getVal('e1_debt_disc') / 100;
     const e1DebtDeduct= e1Debt * e1DebtDisc;
 
-    /* ── EXTREME H ──
-       2026 (exE_y1): solo mal pago aplica
-       2027–2029 (exE_y2 + exE_y3): cancel + reduce + penal + badpay */
-    const exBadPay  = 1 - getVal('exE_badpay') / 100;
-    const exRetFut  = (1 - getVal('exE_cancel')/100) * exBadPay * (1 - getVal('exE_reduce')/100) * (1 - getVal('exE_penal')/100);
-    const exG26     = BASE.exE * getVal('exE_y1') / 100;
-    const exGFut    = BASE.exE * (getVal('exE_y2') + getVal('exE_y3')) / 100;
-    const exEGross  = exG26 + exGFut;
-    const exNet26   = exG26 * exBadPay;
-    const exNetFut  = exGFut * exRetFut;
-    const exENet    = exNet26 + exNetFut;
-    const exERet    = exEGross > 0 ? exENet / exEGross : 1;
+    /* ── EXTREME H — 2027 + 2028 + 2029 ──
+       All 4 discounts apply */
+    const exERet   = compound('exE_cancel', 'exE_badpay', 'exE_reduce', 'exE_penal');
+    const exEGross = BASE.exE * (getVal('exE_y2') + getVal('exE_y3') + getVal('exE_y4')) / 100;
+    const exENet   = exEGross * exERet;
 
     /* ── TOTALS ── */
     const sub   = feNet + e1NetRisk + exENet;
     const early = getVal('early') / 100;
     const total = sub * (1 - early) - e1DebtDeduct;
 
-    const faceTot = BASE.fe26 + BASE.fe * 2 + BASE.e1 * 3.5 + BASE.exE * 3;
-    const discTot = ((faceTot - total) / faceTot * 100).toFixed(0);
+    const faceTot = BASE.fe * 3 + BASE.e1 * 3 + BASE.exE * 3;
+    const discTot = faceTot > 0 ? ((faceTot - total) / faceTot * 100).toFixed(0) : 0;
 
     /* Retention badges */
     setEl('ret-fe',  P0(feRet),  dColor(feRet));
@@ -701,20 +723,19 @@
     setEl('ret-exE', P0(exERet), dColor(exERet));
 
     /* FE mini stats */
-    setEl('ms-fe-26', EUR(feNet26));
-    setEl('ms-fe-n',  EUR(feNetFut), dColor(feRet));
+    setEl('ms-fe-27', EUR(feG27 * feRet), dColor(feRet));
+    setEl('ms-fe-28', EUR(feG28 * feRet), dColor(feRet));
+    setEl('ms-fe-29', EUR(feG29 * feRet), dColor(feRet));
     setEl('ms-fe-g',  EUR(feGross));
 
     /* E1 mini stats */
-    setEl('ms-e1-26',  EUR(e1Net26));
-    setEl('ms-e1-n',   EUR(e1NetFut), dColor(e1Ret));
+    setEl('ms-e1-n',   EUR(e1NetRisk), dColor(e1Ret));
     setEl('ms-e1-debt','−' + EUR(e1DebtDeduct));
     setEl('ms-e1-g',   EUR(e1Gross));
     setEl('e1_debt_deduct', '−' + EUR(e1DebtDeduct));
 
     /* ExH mini stats */
-    setEl('ms-exE-26', EUR(exNet26));
-    setEl('ms-exE-n',  EUR(exNetFut), dColor(exERet));
+    setEl('ms-exE-n',  EUR(exENet), dColor(exERet));
     setEl('ms-exE-g',  EUR(exEGross));
 
     /* Table */
@@ -747,7 +768,6 @@
     setEl('rb-total', EUR(total));
     setEl('rb-disc',  `−${discTot}% vs nominal`);
 
-    /* Saving display */
     setEl('saving-early', '−' + EUR(sub * early));
   }
 
@@ -759,9 +779,9 @@
     e1_reduce:  'v-e1_reduce',  e1_penal:   'v-e1_penal',
     exE_cancel: 'v-exE_cancel', exE_badpay: 'v-exE_badpay',
     exE_reduce: 'v-exE_reduce', exE_penal:  'v-exE_penal',
-    fe_y1: 'v-fe_y1', fe_y2: 'v-fe_y2', fe_y3: 'v-fe_y3',
-    e1_y1: 'v-e1_y1', e1_y2: 'v-e1_y2', e1_y3: 'v-e1_y3', e1_y35: 'v-e1_y35',
-    exE_y1: 'v-exE_y1', exE_y2: 'v-exE_y2', exE_y3: 'v-exE_y3',
+    fe_y2: 'v-fe_y2', fe_y3: 'v-fe_y3', fe_y4: 'v-fe_y4',
+    e1_y2: 'v-e1_y2', e1_y3: 'v-e1_y3', e1_y35: 'v-e1_y35',
+    exE_y2: 'v-exE_y2', exE_y3: 'v-exE_y3', exE_y4: 'v-exE_y4',
     early: 'v-early',
     e1_debt_disc: 'v-e1_debt_disc'
   };
